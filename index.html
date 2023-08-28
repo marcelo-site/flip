@@ -4,22 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="js.js" defer></script>
+    <title>Catalógo incrível</title>
+    <link rel="stylesheet" href="src/assets/css/style.css">
+    <script src="/src/assets/js/index.js" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 
+<header class="fixed">
+    <nav>
+        <ul>
+            <li><a class="btn" target="_blank" href="https://api.whatsapp.com/send?phone=5581991869812">Ir para <i class="bi bi-whatsapp"></i></a></li>
+            <li><a class="btn" href="#">Anterirores</a></li>
+            <li><a class="btn" id="cart" href="src/pages/cart.html">Sacola <span style="position: relative;"><i class="bi bi-basket2-fill"></i><span id="cart-qty" >0</span></span></a></li>
+        </ul>
+    </nav>
+</header>
+
 <body>
+    <div id="msg"></div>
+    <h1>Destaques</h1>
     <div class="container">
         <div class="flip">
             <div class="front">
                 <div>
-                    <img src="assets/img/1689205716989-pexels-ficky-2364618.webp" alt="">
+                    <img name="img" src="/src/assets/img/1689205716989-pexels-ficky-2364618.webp" alt="">
                 </div>
                 <div class="info">
                     <h2>Product 1</h2>
-                    <p>Produto bacana</p>
-                    <p>bem feito e com qualidade</p>
+                    <p><span class="bold price">Preço:</span> R$ 39,99</p>
+                    <div class="desc">
+                        <p>Produto bacana</p>
+                        <p>bem feito e com qualidade</p>
+                    </div>
                     <button class="btn">Ver variantes</button>
                 </div>
             </div>
@@ -27,51 +43,124 @@
                 <div class="virate"><button class="btn">Desvirar</button></div>
                 <div class="verso-products">
                     <div>
-                        <div>
-                            <img src="assets/img/1689205752812-pexels-devesh-pandey-2958620.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h2>Cor 1</h2>
-                            <p>Ref: #000</p>
-                            <button class="btn">Escolher</button>
-                        </div>
+                        <form>
+                            <input type="hidden" name="price" value="39.99">
+                            <div>
+                                <img name="img" src="/src/assets/img/1689205752812-pexels-devesh-pandey-2958620.webp" alt="">
+                            </div>
+                            <div class="info">
+                                <h2>Cor 1</h2>
+                                <p>Ref: #000</p>
+                                <div class="sizes">
+                                    <label for="p-cor1-product1">P</label>
+                                    <input type="radio" name="size" id="p-cor1-product1" value="p">
+                                    <label for="m-cor1-product1">M</label>
+                                    <input type="radio" name="size" id="m-cor1-product1" value="m">
+                                    <label for="g-cor1-product1">G</label>
+                                    <input type="radio" name="size" id="g-cor1-product1" value="g">
+                                </div>
+                                <div class="quant">
+                                    <label for="">Quantidade:</label>
+                                    <input type="number" name="qty" required id="">
+                                </div>
+                                <input class="btn" type="submit" value="Escolher">
+                            </div>
+                        </form>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/img/1689205896097-pexels-anastasiya-gepp-1462637.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h2>Cor 2</h2>
-                            <p>Ref: #000</p>
-                            <button class="btn">Escolher</button>
-                        </div>
+                        <form>
+                            <input type="hidden" name="price" value="39.99">
+                            <div>
+                                <img name="img" src="/src/assets/img/1689205896097-pexels-anastasiya-gepp-1462637.webp"
+                                    alt="">
+                            </div>
+                            <div class="info">
+                                <h2>Cor 2</h2>
+                                <p>Ref: #000</p>
+
+                                <div class="sizes">
+                                    <label for="p-cor2-product1">P</label>
+                                    <input type="radio" name="size" id="p-cor2-product1" value="p">
+                                    <label for="m-cor2-product1">M</label>
+                                    <input type="radio" name="size" id="m-cor2-product1" value="m">
+                                    <label for="g-cor2-product1">G</label>
+                                    <input type="radio" name="size" id="g-cor2-product1" value="g">
+                                </div>
+                                <div class="quant">
+                                    <label for="">Quantidade:</label>
+                                    <input type="number" name="qty" required id="">
+                                </div>
+                                <input class="btn" type="submit" value="Escolher">
+
+                            </div>
+                        </form>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/img/1689205971882-pexels-ingrid-santana-1878687.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h2>Cor 3</h2>
-                            <p>Ref: #000</p>
-                            <button class="btn">Escolher</button>
-                        </div>
+                        <form>
+                            <input type="hidden" name="price" value="39.99">
+                            <div>
+                                <img name="img" src="/src/assets/img/1689205971882-pexels-ingrid-santana-1878687.webp"
+                                    alt="">
+                            </div>
+                            <div class="info">
+                                <h2>Cor 3</h2>
+                                <p>Ref: #000</p>
+                                <div class="sizes">
+                                    <label for="p-cor3-product1">P</label>
+                                    <input type="radio" name="size" id="p-cor3-product1" value="p">
+                                    <label for="m-cor3-product1">M</label>
+                                    <input type="radio" name="size" id="m-cor3-product1" value="m">
+                                    <label for="g-cor3-product1">G</label>
+                                    <input type="radio" name="size" id="g-cor3-product1" value="g">
+                                </div>
+                                <div class="quant">
+                                    <label for="">Quantidade:</label>
+                                    <input type="number" name="qty" required id="">
+                                </div>
+                                <input class="btn" type="submit" value="Escolher">
+                            </div>
+                        </form>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/img/1689206156244-pexels-alisson-souto-1759622.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h2>Cor 4</h2>
-                            <p>Ref: #000</p>
-                            <button class="btn">Escolher</button>
-                        </div>
+                        <form>
+                            <input type="hidden" name="price" value="39.99">
+                            <div>
+                                <img name="img" src="/src/assets/img/1689206156244-pexels-alisson-souto-1759622.webp" alt="">
+                            </div>
+                            <div class="info">
+                                <h2>Cor 4</h2>
+                                <p>Ref: #000</p>
+
+                                <div class="sizes">
+                                    <label for="p-cor4-product1">P</label>
+                                    <input type="radio" name="size" id="p-cor4-product1" value="p">
+                                    <label for="m-cor4-product1">M</label>
+                                    <input type="radio" name="size" id="m-cor4-product1" value="m">
+                                    <label for="g-cor4-product1">G</label>
+                                    <input type="radio" name="size" id="g-cor4-product1" value="g">
+                                </div>
+                                <div class="quant">
+                                    <label for="">Quantidade:</label>
+                                    <input type="number" name="qty" required id="">
+                                </div>
+                                <input class="btn" type="submit" value="Escolher">
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="bulets">
-                    <span><div></div></span>
-                    <span><div></div></span>
-                    <span><div></div></span>
-                    <span><div></div></span>
+                <div id="bulets-1" class="bulets">
+                    <span>
+                        <div style="background-color: blue;"></div>
+                    </span>
+                    <span>
+                        <div></div>
+                    </span>
+                    <span>
+                        <div></div>
+                    </span>
+                    <span>
+                        <div></div>
+                    </span>
                 </div>
             </div>
         </div>
@@ -81,12 +170,15 @@
         <div class="flip">
             <div class="front">
                 <div>
-                    <img src="assets/img/1689206752315-pexels-ravi-k-9386392.webp" alt="">
+                    <img name="img" src="/src/assets/img/1689206752315-pexels-ravi-k-9386392.webp" alt="">
                 </div>
                 <div class="info">
                     <h2>Product 2</h2>
-                    <p>Produto bacana</p>
-                    <p>bem feito e com qualidade</p>
+                    <p><span class="bold price">Preço:</span> R$ 19,99</p>
+                    <div class="desc">
+                        <p>Produto bacana</p>
+                        <p>bem feito e com qualidade</p>
+                    </div>
                     <button class="btn">Ver variantes</button>
                 </div>
             </div>
@@ -94,66 +186,156 @@
                 <div class="virate"><button class="btn">Desvirar</button></div>
                 <div class="verso-products">
                     <div>
-                        <div>
-                            <img src="assets/img/1689205752812-pexels-devesh-pandey-2958620.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h2>Cor 1</h2>
-                            <p>Ref: #000</p>
-                            <button class="btn">Escolher</button>
-                        </div>
+                        <form>
+                            <input type="hidden" name="price" value="19.99">
+                            <div>
+                                <img name="img" src="/src/assets/img/1689205752812-pexels-devesh-pandey-2958620.webp" alt="">
+                            </div>
+                            <div class="info">
+                                <h2>Cor 1</h2>
+                                <p>Ref: #000</p>
+
+                                <div class="sizes">
+                                    <label for="p-cor1-product2">P</label>
+                                    <input type="radio" name="size" id="p-cor1-product2" value="p">
+                                    <label for="m-cor1-product2">M</label>
+                                    <input type="radio" name="size" id="m-cor1-product2" value="m">
+                                    <label for="g-cor1-product2">G</label>
+                                    <input type="radio" name="size" id="g-cor1-product2" value="g">
+                                </div>
+                                <div class="quant">
+                                    <label for="">Quantidade:</label>
+                                    <input type="number" name="qty" required id="">
+                                </div>
+                                <input class="btn" type="submit" value="Escolher">
+                            </div>
+                        </form>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/img/1689205896097-pexels-anastasiya-gepp-1462637.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h2>Cor 2</h2>
-                            <p>Ref: #000</p>
-                            <button class="btn">Escolher</button>
-                        </div>
+                        <form>
+                            <input type="hidden" name="price" value="19.99">
+                            <div>
+                                <img name="img" src="/src/assets/img/1689205896097-pexels-anastasiya-gepp-1462637.webp"
+                                    alt="">
+                            </div>
+                            <div class="info">
+                                <h2>Cor 2</h2>
+                                <p>Ref: #000</p>
+                                <div class="sizes">
+                                    <label for="p-cor2-product2">P</label>
+                                    <input type="radio" name="size" id="p-cor2-product2" value="p">
+                                    <label for="m-cor2-product2">M</label>
+                                    <input type="radio" name="size" id="m-cor2-product2" value="m">
+                                    <label for="g-cor2-product2">G</label>
+                                    <input type="radio" name="size" id="g-cor2-product2" value="g">
+                                </div>
+                                <div class="quant">
+                                    <label for="">Quantidade:</label>
+                                    <input type="number" name="qty" required id="">
+                                </div>
+                                <input class="btn" type="submit" value="Escolher">
+                            </div>
+                        </form>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/img/1689205971882-pexels-ingrid-santana-1878687.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h2>Cor 3</h2>
-                            <p>Ref: #000</p>
-                            <button class="btn">Escolher</button>
-                        </div>
+                        <form>
+                            <input type="hidden" name="price" value="19.99">
+                            <div>
+                                <img name="img" src="/src/assets/img/1689205971882-pexels-ingrid-santana-1878687.webp"
+                                    alt="">
+                            </div>
+                            <div class="info">
+                                <h2>Cor 3</h2>
+                                <p>Ref: #000</p>
+                                <div class="sizes">
+                                    <label for="p-cor3-product2">P</label>
+                                    <input type="radio" name="size" id="p-cor3-product2" value="p">
+                                    <label for="m-cor3-product2">M</label>
+                                    <input type="radio" name="size" id="m-cor3-product2" value="m">
+                                    <label for="g-cor3-product2">G</label>
+                                    <input type="radio" name="size" id="g-cor3-product2" value="g">
+                                </div>
+                                <div class="quant">
+                                    <label for="">Quantidade:</label>
+                                    <input type="number" name="qty" required id="">
+                                </div>
+                                <input class="btn" type="submit" value="Escolher">
+                            </div>
+                        </form>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/img/1689283171543-pexels-bm-capture-2232981.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h2>Cor 4</h2>
-                            <p>Ref: #000</p>
-                            <button class="btn">Escolher</button>
-                        </div>
+                        <form>
+                            <input type="hidden" name="price" value="19.99">
+                            <div>
+                                <img name="img" src="/src/assets/img/1689283171543-pexels-bm-capture-2232981.webp" alt="">
+                            </div>
+                            <div class="info">
+                                <h2>Cor 4</h2>
+                                <p>Ref: #000</p>
+                                <div class="sizes">
+                                    <label for="p-cor4-product2">P</label>
+                                    <input type="radio" name="size" id="p-cor4-product2" value="p">
+                                    <label for="m-cor4-product2">M</label>
+                                    <input type="radio" name="size" id="m-cor4-product2" value="m">
+                                    <label for="g-cor4-product2">G</label>
+                                    <input type="radio" name="size" id="g-cor4-product2" value="g">
+                                </div>
+                                <div class="quant">
+                                    <label for="">Quantidade:</label>
+                                    <input type="number" name="qty" required id="">
+                                </div>
+                                <input class="btn" type="submit" value="Escolher">
+                            </div>
+                        </form>
                     </div>
                     <div>
-                        <div>
-                            <img src="assets/img/1689206098378-pexels-daniel-duarte-15526243.webp" alt="">
-                        </div>
-                        <div class="info">
-                            <h2>Cor 5</h2>
-                            <p>Ref: #000</p>
-                            <button class="btn">Escolher</button>
-                        </div>
+                        <form>
+                            <input type="hidden" name="price" value="19.99">
+                            <div>
+                                <img name="img" src="/src/assets/img/1689206098378-pexels-daniel-duarte-15526243.webp"
+                                    alt="">
+                            </div>
+                            <div class="info">
+                                <h2>Cor 5</h2>
+                                <p>Ref: #000</p>
+                                <div class="sizes">
+                                    <label for="p-cor5-product2">P</label>
+                                    <input type="radio" name="size" id="p-cor5-product2" value="p">
+                                    <label for="m-cor5-product2">M</label>
+                                    <input type="radio" name="size" id="m-cor5-product2" value="m">
+                                    <label for="g-cor5-product2">G</label>
+                                    <input type="radio" name="size" id="g-cor5-product2" value="g">
+                                </div>
+                                <div class="quant">
+                                    <label for="">Quantidade:</label>
+                                    <input type="number" name="qty" required id="">
+                                </div>
+                                <input class="btn" type="submit" value="Escolher">
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="bulets">
-                    <span><div></div></span>
-                    <span><div></div></span>
-                    <span><div></div></span>
-                    <span><div></div></span>
-                    <span><div></div></span>
+                <div id="bulets-2" class="bulets">
+                    <span>
+                        <div style="background-color: blue;"></div>
+                    </span>
+                    <span>
+                        <div></div>
+                    </span>
+                    <span>
+                        <div></div>
+                    </span>
+                    <span>
+                        <div></div>
+                    </span>
+                    <span>
+                        <div></div>
+                    </span>
                 </div>
             </div>
         </div>
     </div>
+
 </body>
 
 </html>
