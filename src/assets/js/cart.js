@@ -53,16 +53,7 @@ const insertContent = async () => {
         } catch (error) {
             console.log(error)
         }
-        setTimeout(() => {
-            const container = Array.from(document.querySelectorAll('.container'))
-            const sizeImg = document.querySelector('.container img').clientHeight
-            container.map(el => {
-                el.style.height = `${parseInt(sizeImg) + 150}px`
-            })
-            const total = Array.from(document.querySelectorAll('.subtotal'))
-                .reduce((acc, cur) => acc + parseFloat(cur.innerHTML), 0)
-            document.querySelector('#total').innerHTML = `<span class="bold">O total da sua sacola é:</span> ${total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`
-        }, 300)
+       
     } else {
         const div = document.createElement('div')
         div.innerHTML = 'Não Há produtos no momento!'
@@ -88,4 +79,18 @@ generetePDF.addEventListener('click', () => {
     html2pdf().set(options).from(content).save()
 })
 
-window.addEventListener('load', () => insertContent())
+window.addEventListener('load', () => {
+    insertContent()
+    setTimeout(() => {
+        const container = Array.from(document.querySelectorAll('.container'))
+        const sizeImg = document.querySelector('.container img').clientHeight
+        container.map(el => {
+            el.style.height = `${parseInt(sizeImg) + 150}px`
+        })
+        const total = Array.from(document.querySelectorAll('.subtotal'))
+            .reduce((acc, cur) => acc + parseFloat(cur.innerHTML), 0)
+        const span = document.createElement('span')
+        span.innerHTML = `<span class="bold">O total da sua sacola é:</span> ${total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`
+        totCart.prepend(span)
+    }, 300)
+} )
