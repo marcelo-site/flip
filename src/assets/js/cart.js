@@ -84,7 +84,7 @@ generetePDF.addEventListener('click', () => {
             //  before: '.beforeClass', after: ['#after1', '#after2'],
          avoid: '.container' },
         image: { type: 'jpeg', quality: 0.98 },
-        jsPDF: { unit: "mm", format: "a5", orientation: "portrait" }
+        jsPDF: { unit: "mm", format: "a6", orientation: "portrait" }
     }
     console.log(content)
     html2pdf().set(options).from(content).save()
