@@ -61,7 +61,7 @@ forms.forEach(form => {
             } else {
                 localStorage.setItem('cart', JSON.stringify([order]))
             }
-            div.innerHTML = 'Você acaba de colocar um item na sacola!'
+            div.innerHTML = 'Você acaba de adicionar um item na sacola!'
             div.classList.add('sucess')
             msg.append(div)
             const cartQtyTot = parseInt(cartQty.innerHTML)

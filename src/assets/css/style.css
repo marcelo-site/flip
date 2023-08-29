@@ -145,7 +145,14 @@ h1, h2 {
     color: #2020a5;
 }
 
-s .sizes {
+.container-size {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+}
+
+.sizes {
     display: flex;
     justify-content: center;
     gap: 0.5em;
@@ -157,11 +164,6 @@ s .sizes {
     border-radius: 3px;
     border: 1px solid var(--border-color);
     box-shadow: 1px 0px 2px var(--shadow-color);
-}
-
-.quant label {
-    display: block;
-    margin: 0.2em 0;
 }
 
 .quant input {
@@ -264,14 +266,16 @@ div.bulets {
 }
 
 .message {
+    width: 18em;
+    font-size: .8em;
     padding: 1em 3em;
     position: fixed;
     top: 5em;
-    right: 5em;
+    right: 3em;
     border-radius: 5px;
     z-index: 1000;
     transform-style: preserve-3d;
-    animation: slidein .5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both; 
+    animation: slidein .5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
 .alert {
