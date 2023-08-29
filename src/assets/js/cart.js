@@ -29,13 +29,13 @@ const insertContent = async () => {
                 img.src = URL.createObjectURL(srcImg);
                 divImg.append(img)
                 div.append(divImg)
-                divInfo = document.createElement('div')
+
+                const divInfo = document.createElement('div')
                 divInfo.classList.add('info')
                 const info = order.desc.split('-')
                 const title = document.createElement('h2')
                 title.innerHTML = info[2]
                 divInfo.append(title)
-
                 const cor = document.createElement('h3')
                 cor.innerHTML = info[1]
                 divInfo.append(cor)
@@ -50,6 +50,7 @@ const insertContent = async () => {
                 qty.innerHTML = `<span class="bold">Quantidade:</span> ${order.qty}`
                 divInfo.append(qty)
                 div.append(divInfo)
+
                 const subTotal = document.createElement('p')
                 subTotal.classList.add('subtotal')
                 const subTotalOrder = (parseFloat(order.price) * parseInt(order.qty))
@@ -63,7 +64,6 @@ const insertContent = async () => {
         } catch (error) {
             console.log(error)
         }
-       
     } else {
         const div = document.createElement('div')
         div.innerHTML = 'Não Há produtos no momento!'
@@ -79,7 +79,7 @@ generetePDF.addEventListener('click', () => {
     const options = {
         margin: 1,
         filename: `pedido-catalogo-incrivel-${date}.pdf`,
-        // html2canvas: { sacle: 2 },
+        html2canvas: { sacle: 2 },
         pagebreak: {
             //  before: '.beforeClass', after: ['#after1', '#after2'],
          avoid: '.container' },
