@@ -37,14 +37,20 @@ const insertContent = async () => {
                 divInfo.append(cor)
                 const price = document.createElement('p')
                 price.innerHTML = `<span class="bold">Preço: </span> ${order.price}`
+                price.classList.add('price')
                 divInfo.append(price)
-                const sizeQty = document.createElement('p')
-                sizeQty.innerHTML = `<span class="bold">Tamanho: </span>${order.size} <span class="bold">Quant:</span> ${order.qty}`
-                divInfo.append(sizeQty)
+                const size = document.createElement('p')
+                size.innerHTML = `<span class="bold">Tamanho: </span>${order.size}`
+                divInfo.append(size)
+                const qty = document.createElement('p')
+                qty.innerHTML = `<span class="bold">Quantidade:</span> ${order.qty}`
+                divInfo.append(qty)
                 div.append(divInfo)
                 const subTotal = document.createElement('p')
-                price.classList.add('price')
-                subTotal.innerHTML = `<span class="bold">Subtotal: </span> <span class="subtotal">${parseFloat(order.price) * parseInt(order.qty)}</span>`
+                subTotal.classList.add('subtotal')
+                const subTotalOrder = (parseFloat(order.price) * parseInt(order.qty))
+                .toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})
+                subTotal.innerHTML = `<span class="bold">Subtotal: </span> <span class="subtotal_order">${subTotalOrder}</span>`
                 divInfo.append(subTotal)
                 divContainer.append(div)
                 content.append(divContainer)
@@ -65,15 +71,17 @@ const insertContent = async () => {
 const generetePDF = document.querySelector('#pdf')
 
 generetePDF.addEventListener('click', () => {
+    const date = new Date().toLocaleDateString('pt-br').replace(/\//g, '-')
+    console.log(date)
     const options = {
         margin: 1,
-        filename: "arquivo.pdf",
+        filename: `pedido-catalogo-incrivel-${date}.pdf`,
         html2canvas: { sacle: 2 },
         pagebreak: {
             //  before: '.beforeClass', after: ['#after1', '#after2'],
          avoid: '.container' },
         image: { type: 'jpeg', quality: 0.98 },
-        jsPDF: { unit: "mm", format: "a5", orientation: "portrait" }
+        jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
     }
     console.log(content)
     html2pdf().set(options).from(content).save()
@@ -85,11 +93,12 @@ window.addEventListener('load', () => {
         const container = Array.from(document.querySelectorAll('.container'))
         const sizeImg = document.querySelector('.container img').clientHeight
         container.map(el => {
-            el.style.height = `${parseInt(sizeImg) + 150}px`
+            el.style.height = `${parseInt(sizeImg) + 160}px`
         })
-        const total = Array.from(document.querySelectorAll('.subtotal'))
-            .reduce((acc, cur) => acc + parseFloat(cur.innerHTML), 0)
+        const total = Array.from(document.querySelectorAll('.subtotal_order'))
+            .reduce((acc, cur) => acc + parseFloat(cur.innerHTML.replace('R$&nbsp;', '').replace(',', '.')), 0)
         const span = document.createElement('span')
+        span.style.color = 'red'
         span.innerHTML = `<span class="bold">O total da sua sacola é:</span> ${total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`
         totCart.prepend(span)
     }, 300)

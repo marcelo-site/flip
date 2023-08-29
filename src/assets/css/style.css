@@ -315,3 +315,15 @@ div.bulets {
     }
 }
 
+.subtotal {
+    border-top: 1px solid var(--border-color);
+    width: 100%;
+    text-align: center;
+    color: red;
+    padding: .3em;
+}
+
+/* .price {
+    border-top: 1px solid var(--border-color);
+    width: 100%;
+} */
