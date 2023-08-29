@@ -11,6 +11,10 @@ const insertContent = async () => {
         try {
             await Promise.all(orderExists.map(async (order, i) => {
                 const divContainer = document.createElement('div')
+                const del = document.createElement('span')
+                del.classList.add('del')
+                del.innerHTML = 'x'
+                divContainer.append(del)
                 divContainer.classList.add('container')
                 const div = document.createElement('div')
                 div.classList.add('front')
@@ -72,11 +76,10 @@ const generetePDF = document.querySelector('#pdf')
 
 generetePDF.addEventListener('click', () => {
     const date = new Date().toLocaleDateString('pt-br').replace(/\//g, '-')
-    console.log(date)
     const options = {
         margin: 1,
         filename: `pedido-catalogo-incrivel-${date}.pdf`,
-        html2canvas: { sacle: 2 },
+        // html2canvas: { sacle: 2 },
         pagebreak: {
             //  before: '.beforeClass', after: ['#after1', '#after2'],
          avoid: '.container' },
