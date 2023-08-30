@@ -13,11 +13,11 @@
 
 nav ul {
     display: flex;
-    gap: 0.3em;
     justify-content: center;
 }
 
 nav ul li {
+    border: 1px solid var(--border-color);
     list-style: none;
 }
 
@@ -26,7 +26,7 @@ nav ul li {
     position: fixed;
     width: 100vw;
     z-index: 1000;
-    padding: 0.8em 0;
+    padding: 0.2em 0;
     box-shadow: 0px 0px 10px var(--shadow-color);
     background-color: #ffffff;
     border-bottom: 1px solid var(--border-color);
@@ -37,10 +37,11 @@ header {
     left: 0;
 }
 
-#total {
+#bottom {
     bottom: 0;
     left: 0;
     text-align: center;
+    padding: 0.5em 0
 }
 
 header .btn {
@@ -49,8 +50,8 @@ header .btn {
 
 #cart span span {
     position: absolute;
-    top: -13px;
-    left: 13px;
+    top: -14px;
+    left: 27px;
     font-weight: bold;
     color: red;
     background-color: white;
@@ -69,18 +70,31 @@ nav ul li a {
     color: var(--primary-color);
 }
 
+nav ul li i, nav ul li .svg {
+    font-size: 1.5em;
+    padding: 0.15em 0.3em;
+    display: inline-block;
+    height: 100%;
+    
+    background-color: #BDBDBD;
+    color: #616161;
+}
+
+nav ul li i.current {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
 body {
     min-height: calc(100vh - 60px);
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     margin: 35px auto;
-    background-color: #e8e8e8;
 }
 
 h1, h2 {
     text-transform: uppercase;
     text-align: center;
-    margin: 0.6em 0;
+    margin: 0.6em 0 0.2em;
     color: var(--primary-color);
     text-shadow: #00000024;
 }
@@ -135,7 +149,7 @@ h1, h2 {
     flex-direction: column;
     align-items: center;
     gap: 3px;
-    margin-top: 0.8em;
+    margin: 0.8em 0;
     transform-style: preserve-3d;
 }
 
@@ -195,10 +209,10 @@ input[type='radio'] {
 
 
 .btn {
-    font-size: 1em;
+    font-size: 1.2em;
     padding: 0.4em 0.8em;
     font-weight: bold;
-    background-color: blue;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     border-radius: 5px;
@@ -266,6 +280,7 @@ div.bulets {
 }
 
 .message {
+    text-align: center;
     width: 18em;
     padding: 1em 3em;
     position: fixed;
@@ -320,6 +335,7 @@ div.bulets {
 }
 
 .subtotal {
+    position: relative;
     border-top: 1px solid var(--border-color);
     width: 100%;
     text-align: center;
@@ -327,15 +343,14 @@ div.bulets {
     padding: .3em;
 }
 
-
 .del {
+    border: none;
     position: absolute;
-    top: -3px;
+    top: 3px;
     z-index: 100;
     right: -3px;
-    background-color: red;
-    color: white;
-    font-size: 16px;
+    color: red;
+    font-size: 1.5em;
     padding: 0px 5px 1px;
     border-radius: 50%;
 }

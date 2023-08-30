@@ -5,16 +5,47 @@ if (!localStorage.hasOwnProperty('cart')) {
 const orderExists = JSON.parse(localStorage.getItem('cart'))
 const content = document.querySelector('#content')
 const totCart = document.querySelector('#total')
+const cartQty = document.querySelector('#cart-qty')
+import { menuIsactive } from "./menu.js"
+
+// function delete product do cart
+const deleteProduct = async (param) => {
+    try {
+       const res = confirm('tem certeza que deseja excluir esse item?')
+       if(res === true) {
+        orderExists.splice(param, 1)
+        const child = document.querySelectorAll('.container')[param]
+        child.style.display = 'none'
+        localStorage.setItem('cart', JSON.stringify(orderExists))
+        const qty = parseInt(cartQty.innerHTML)
+        // cartQty.innerHTML = qty - 1
+        setTimeout(() => location.reload(), 200)
+       }
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// gerar pdf
+const generetePDF = document.querySelector('#pdf')
+generetePDF.addEventListener('click', () => {
+    const date = new Date().toLocaleDateString('pt-br').replace(/\//g, '-')
+    const options = {
+        margin: 1,
+        filename: `pedido-catalogo-incrivel-${date}.pdf`,
+        html2canvas: { sacle: 2 },
+        pagebreak: { avoid: '.container' },
+        image: { type: 'jpeg', quality: 0.98 },
+        jsPDF: { unit: "mm", format: "a6", orientation: "portrait" }
+    }
+    html2pdf().set(options).from(content).save()
+})
 
 const insertContent = async () => {
     if (orderExists.length > 0) {
         try {
-            await Promise.all(orderExists.map(async (order, i) => {
+          const result =  await Promise.allSettled(orderExists.map(async (order, index) => {
                 const divContainer = document.createElement('div')
-                const del = document.createElement('span')
-                del.classList.add('del')
-                del.innerHTML = 'x'
-                divContainer.append(del)
                 divContainer.classList.add('container')
                 const div = document.createElement('div')
                 div.classList.add('front')
@@ -54,55 +85,51 @@ const insertContent = async () => {
                 const subTotal = document.createElement('p')
                 subTotal.classList.add('subtotal')
                 const subTotalOrder = (parseFloat(order.price) * parseInt(order.qty))
-                .toLocaleString('pt-br', {style: 'currency', currency: 'BRL'})
+                    .toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
                 subTotal.innerHTML = `<span class="bold">Subtotal: </span> <span class="subtotal_order">${subTotalOrder}</span>`
+                const del = document.createElement('button')
+                del.classList.add('del')
+                del.onclick = () => deleteProduct(index)
+                del.innerHTML = '<i class="bi bi-trash-fill"></i>'
+                subTotal.append(del)
+
                 divInfo.append(subTotal)
                 divContainer.append(div)
-                content.append(divContainer)
-                return
+                return divContainer
+            }))
+            await Promise.all(result.map(async el => {
+                content.append(el.value)
             }))
         } catch (error) {
             console.log(error)
         }
-    } else {
+    }
+     else {
         const div = document.createElement('div')
+        div.style.textAlign = 'center'
         div.innerHTML = 'Não Há produtos no momento!'
         content.append(div)
     }
 }
 
-// gerar pdf
-const generetePDF = document.querySelector('#pdf')
-
-generetePDF.addEventListener('click', () => {
-    const date = new Date().toLocaleDateString('pt-br').replace(/\//g, '-')
-    const options = {
-        margin: 1,
-        filename: `pedido-catalogo-incrivel-${date}.pdf`,
-        html2canvas: { sacle: 2 },
-        pagebreak: {
-            //  before: '.beforeClass', after: ['#after1', '#after2'],
-         avoid: '.container' },
-        image: { type: 'jpeg', quality: 0.98 },
-        jsPDF: { unit: "mm", format: "a6", orientation: "portrait" }
+window.addEventListener('load',async () => {
+  await  insertContent()
+    if (orderExists.length > 0) {
+        cartQty.innerHTML = orderExists.length
     }
-    console.log(content)
-    html2pdf().set(options).from(content).save()
-})
-
-window.addEventListener('load', () => {
-    insertContent()
     setTimeout(() => {
         const container = Array.from(document.querySelectorAll('.container'))
-        const sizeImg = document.querySelector('.container img').clientHeight
+        const imgDiv = document.querySelector('.container img')
+        if(imgDiv) {  
         container.map(el => {
-            el.style.height = `${parseInt(sizeImg) + 160}px`
-        })
+            el.style.height = `${parseInt(imgDiv.clientHeight) + 160}px`
+        }) }
         const total = Array.from(document.querySelectorAll('.subtotal_order'))
             .reduce((acc, cur) => acc + parseFloat(cur.innerHTML.replace('R$&nbsp;', '').replace(',', '.')), 0)
         const span = document.createElement('span')
         span.style.color = 'red'
-        span.innerHTML = `<span class="bold">O total da sua sacola é:</span> ${total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}`
+        span.innerHTML = total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
         totCart.prepend(span)
     }, 300)
-} )
+    menuIsactive()
+})

@@ -10,9 +10,7 @@ const forms = document.querySelectorAll('.verso-products form')
 let width = window.innerWidth
 const msg = document.querySelector('#msg')
 const cartQty = document.querySelector('#cart-qty')
-const prices = document.querySelectorAll('.price')
-const bulets1 = document.querySelectorAll('#bulets-1 span div')
-const bulets2 = document.querySelectorAll('#bulets-2 span div')
+import { menuIsactive } from "./menu.js"
 
 if(!localStorage.hasOwnProperty('cart')) {
     localStorage.setItem('cart', JSON.stringify([]))
@@ -26,7 +24,7 @@ const markBuletPosition = (paramPositon) => {
 }
 
 divVersos.forEach((el, i)=> el.addEventListener('scroll', () => markBuletPosition(i)))
-const orderExists=  JSON.parse(localStorage.getItem('cart'))
+const orderExists = JSON.parse(localStorage.getItem('cart'))
 
 inputsSize.forEach((size, i) => {
     size.addEventListener('click', () => {
@@ -49,6 +47,10 @@ forms.forEach(form => {
             if (desc.length === 0) {
                 throw new Error('Escolha um tamanho!')
             }
+            const exists = orderExists.filter(order => order.desc === desc[0].id)
+            if(exists.length !== 0) {
+                throw new Error('Você já adicionou este item no carrinho!')
+            }
             const img = e.target.img.src
             const price = e.target.price.value
             const qty = e.target.qty.value
@@ -61,7 +63,7 @@ forms.forEach(form => {
             } else {
                 localStorage.setItem('cart', JSON.stringify([order]))
             }
-            div.innerHTML = 'Você acaba de adicionar um item na sacola!'
+            div.innerHTML = 'Você adicionou um item no carrinho!'
             div.classList.add('sucess')
             msg.append(div)
             const cartQtyTot = parseInt(cartQty.innerHTML)
@@ -119,4 +121,5 @@ window.addEventListener('load', () => {
     container.forEach(el => {
         el.style.height = `${sizeImg.clientHeight + 220}px`
     })
+    menuIsactive()
 })
