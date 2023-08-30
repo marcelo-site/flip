@@ -360,3 +360,16 @@ div.bulets {
         display: none;
     }
 }
+
+footer {
+    text-align: center;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.5em 0
+}
+
+footer a {
+    /* ec1e1e; */
+    color: white;
+}
