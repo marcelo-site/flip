@@ -94,7 +94,7 @@ main {
     min-height: calc(100vh - 60px);
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    margin: 35px auto;
+    margin: 42px auto;
 }
 
 h1, h2 {
