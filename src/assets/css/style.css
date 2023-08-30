@@ -22,7 +22,7 @@ nav ul li {
 }
 
 .fixed {
-    height: 44px;
+    height: 56px;
     position: fixed;
     width: 100vw;
     z-index: 1000;
@@ -37,11 +37,15 @@ header {
     left: 0;
 }
 
-#bottom {
+.bottom {
     bottom: 0;
     left: 0;
     text-align: center;
     padding: 0.5em 0
+}
+
+.bottom.fixed {
+    height: 44px;
 }
 
 header .btn {
@@ -71,7 +75,7 @@ nav ul li a {
 }
 
 nav ul li i, nav ul li .svg {
-    font-size: 1.5em;
+    font-size: 2em;
     padding: 0.15em 0.3em;
     display: inline-block;
     height: 100%;
