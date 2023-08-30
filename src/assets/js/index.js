@@ -83,21 +83,25 @@ divVersos.forEach((gridProduct, i) => {
     gridProduct.style.gridTemplateColumns = `repeat(${count}, 1fr)`;
 })
 
-versos.forEach((el, i) => {
-    el.addEventListener('click', () => flip[i].style.transform = '')
+versos.forEach((verso, i) => {
+    verso.addEventListener('click', () => flip[i].style.transform = '')
 })
 
+let moveHand = false
 fronts.forEach((el, i) => {
     el.addEventListener('click', () => {
-        const div = document.createElement('div')
         flip[i].style.transform = 'rotateY(180deg)'
-        div.classList.add('hand')
-        const img = document.createElement('img')
-        img.src = 'src/assets/img/left-click.png'
-        div.append(img)
+        if (moveHand === false) {
+            moveHand = true
+            const div = document.createElement('div')
+            div.classList.add('hand')
+            const img = document.createElement('img')
+            img.src = 'src/assets/img/left-click.png'
+            div.append(img)
 
-        setTimeout(() => container[i].append(div), 500)
-        setTimeout(() => container[i].removeChild(div), 3000)
+            setTimeout(() => container[i].append(div), 500)
+            setTimeout(() => container[i].removeChild(div), 3000)
+        }
     })
 })
 
