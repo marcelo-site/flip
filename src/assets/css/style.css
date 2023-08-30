@@ -85,6 +85,10 @@ nav ul li i.current {
     color: #ffffff;
 }
 body {
+   
+}
+
+main {
     min-height: calc(100vh - 60px);
     display: grid;
     grid-template-columns: repeat(1, 1fr);
@@ -255,9 +259,12 @@ div.virate {
     width: 100%;
     top: 0;
     left: 0;
-    height: 35px;
+    height: 34px;
     z-index: 10000;
     font-size: 1.2em;
+}
+div.virate .btn {
+    padding: 0.2em 0.8em;
 }
 
 div.bulets {
@@ -365,7 +372,7 @@ footer {
     height: 40px;
     background-color: var(--primary-color);
     color: white;
-    padding: 0.5em 0
+    padding: 0.5em 0;
 }
 
 footer a {

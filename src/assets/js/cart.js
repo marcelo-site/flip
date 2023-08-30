@@ -45,8 +45,8 @@ const insertContent = async () => {
     if (orderExists.length > 0) {
         try {
           const result =  await Promise.allSettled(orderExists.map(async (order, index) => {
-                const divContainer = document.createElement('div')
-                divContainer.classList.add('container')
+                const section = document.createElement('section')
+                section.classList.add('container')
                 const div = document.createElement('div')
                 div.classList.add('front')
                 const divImg = document.createElement('div')
@@ -94,8 +94,8 @@ const insertContent = async () => {
                 subTotal.append(del)
 
                 divInfo.append(subTotal)
-                divContainer.append(div)
-                return divContainer
+                section.append(div)
+                return section
             }))
             await Promise.all(result.map(async el => {
                 content.append(el.value)
