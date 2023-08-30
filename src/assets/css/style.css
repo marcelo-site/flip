@@ -153,8 +153,8 @@ h1, h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 3px;
-    margin: 0.8em 0;
+    gap: 2px;
+    margin: 0.6em 0;
     transform-style: preserve-3d;
 }
 
@@ -393,7 +393,7 @@ footer a {
 .hand {
     position: absolute;
     top: 25%;
-    left: 0;
+    left: 10%;
     transform-style: preserve-3d;
     animation: slide 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
