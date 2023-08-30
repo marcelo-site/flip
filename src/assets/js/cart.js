@@ -15,11 +15,12 @@ const deleteProduct = async (param) => {
        if(res === true) {
         orderExists.splice(param, 1)
         const child = document.querySelectorAll('.container')[param]
-        child.style.display = 'none'
+        content.removeChild(child)
         localStorage.setItem('cart', JSON.stringify(orderExists))
         const qty = parseInt(cartQty.innerHTML)
-        // cartQty.innerHTML = qty - 1
-        setTimeout(() => location.reload(), 200)
+        cartQty.innerHTML = qty - 1
+        const del = document.querySelectorAll('.del')
+        del.forEach((el, i) => el.onclick =() => deleteProduct(i))
        }
     } catch (error) {
         console.log(error)
@@ -45,8 +46,8 @@ const insertContent = async () => {
     if (orderExists.length > 0) {
         try {
           const result =  await Promise.allSettled(orderExists.map(async (order, index) => {
-                const section = document.createElement('section')
-                section.classList.add('container')
+                const divOrder = document.createElement('div')
+                divOrder.classList.add('container')
                 const div = document.createElement('div')
                 div.classList.add('front')
                 const divImg = document.createElement('div')
@@ -67,9 +68,6 @@ const insertContent = async () => {
                 const title = document.createElement('h2')
                 title.innerHTML = info[2]
                 divInfo.append(title)
-                const cor = document.createElement('h3')
-                cor.innerHTML = info[1]
-                divInfo.append(cor)
                 const price = document.createElement('p')
                 price.innerHTML = `<span class="bold">Preço: </span> ${order.price}`
                 price.classList.add('price')
@@ -94,8 +92,8 @@ const insertContent = async () => {
                 subTotal.append(del)
 
                 divInfo.append(subTotal)
-                section.append(div)
-                return section
+                divOrder.append(div)
+                return divOrder
             }))
             await Promise.all(result.map(async el => {
                 content.append(el.value)
@@ -122,7 +120,7 @@ window.addEventListener('load',async () => {
         const imgDiv = document.querySelector('.container img')
         if(imgDiv) {  
         container.map(el => {
-            el.style.height = `${parseInt(imgDiv.clientHeight) + 160}px`
+            el.style.height = `${parseInt(imgDiv.clientHeight) + 150}px`
         }) }
         const total = Array.from(document.querySelectorAll('.subtotal_order'))
             .reduce((acc, cur) => acc + parseFloat(cur.innerHTML.replace('R$&nbsp;', '').replace(',', '.')), 0)

@@ -12,6 +12,7 @@
 }
 
 nav ul {
+    padding: .15em 0;
     display: flex;
     justify-content: center;
 }
@@ -22,7 +23,7 @@ nav ul li {
 }
 
 .fixed {
-    height: 56px;
+    height: 3.8em;
     position: fixed;
     width: 100vw;
     z-index: 1000;
@@ -45,7 +46,8 @@ header {
 }
 
 .bottom.fixed {
-    height: 44px;
+    font-size: 1.1em;
+    height: 2.5em;
 }
 
 header .btn {
@@ -159,10 +161,12 @@ h1, h2 {
     transform-style: preserve-3d;
 }
 
-.info h2 {
+.info h2, .info h3 {
+    text-transform: uppercase;
     margin: 0;
     margin-top: -0.5em;
     color: #2020a5;
+    margin: .05em 0;
 }
 
 .container-size {
@@ -218,11 +222,17 @@ input[type='radio'] {
     font-size: 1.2em;
     padding: 0.4em 0.8em;
     font-weight: bold;
-    background-color: var(--primary-color);
+    background-color: blue;
     color: white;
     border: none;
     border-radius: 5px;
     box-shadow: 0px 0px 10px var(--shadow-color);
+}
+
+.btn:active {
+    transform: scale(1.05);
+    margin-top: -1px;
+    box-shadow: -1px 3px 0px rgb(0 0 0 / 50%);
 }
 
 .verso {
@@ -344,12 +354,13 @@ div.bulets {
 }
 
 .subtotal {
+    font-size: 1.2em;
     position: relative;
     border-top: 1px solid var(--border-color);
     width: 100%;
     text-align: center;
     color: red;
-    padding: .3em;
+    padding: .35em;
 }
 
 .del {
@@ -380,4 +391,32 @@ footer {
 
 footer a {
     color: white;
+}
+
+.hand {
+    position: absolute;
+    top: 25%;
+    left: 0;
+    transform-style: preserve-3d;
+    animation: slide 3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(70vw);
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.hand img {
+    width: 20vw;
 }
