@@ -141,7 +141,7 @@ window.addEventListener('load', async () => {
         // console.log(arr)
         // const textUrl = window.encodeURIComponent(str)
         const textUrl = window.encodeURIComponent(str)
-        const url = `https://api.whatsapp.com/send?phone=5581991869812&text=${textUrl}`
+        const url = `whatsapp://send?phone=5581991869812&text=${textUrl}`
         whats.href = url
     }, 300)
     menuIsactive()
