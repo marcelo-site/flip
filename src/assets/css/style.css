@@ -148,6 +148,24 @@ h1, h2 {
     width: 100%;
 }
 
+.container-img {
+    position: relative;
+}
+
+.left, .right {
+    position: absolute;
+    top: 48%;
+    height: 2em;
+    background-color: #000000d9;
+    color: white;
+    font-size: 1.5em;
+    padding: 0.5em 0.2em;
+}
+
+.right {
+    right: 0;
+}
+
 .info {
     font-size: 1.2em;
     display: flex;

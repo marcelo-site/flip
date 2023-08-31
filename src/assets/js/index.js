@@ -10,12 +10,44 @@ const forms = document.querySelectorAll('.verso-products form')
 let width = window.innerWidth
 const msg = document.querySelector('#msg')
 const cartQty = document.querySelector('#cart-qty')
+const left = document.querySelectorAll('.left')
+const rigth = document.querySelectorAll('.right')
+const containerImg = document.querySelectorAll('.container-img')
 import { menuIsactive } from "./menu.js"
 
 if (!localStorage.hasOwnProperty('cart')) {
     localStorage.setItem('cart', JSON.stringify([]))
 }
 const orderExists = JSON.parse(localStorage.getItem('cart'))
+
+const changeVisibleImg = (paramLeft, paramRigth, paramImgs, paramIndexImg, paramIndex) => {
+    paramLeft.forEach(elLeft => elLeft.style.backgroundColor = '')
+    if (paramIndexImg === 0) paramLeft[paramIndex].style.backgroundColor = '#706f6f'
+
+    paramRigth.forEach(elRigth => elRigth.style.backgroundColor = '')
+    if (paramIndexImg === paramImgs.length - 1) paramRigth[paramIndex].style.backgroundColor = '#706f6f'
+    
+    paramImgs.forEach(img => img.style.display = 'none')
+    paramImgs[paramIndexImg].style.display = ''
+}
+
+containerImg.forEach((el, i) => {
+    let indexImg = 0
+    const imgs = el.querySelectorAll('img')
+
+    left[i].addEventListener('click', () => {
+        if (indexImg > 0 && indexImg < imgs.length) {
+            indexImg--
+            changeVisibleImg(left, rigth, imgs, indexImg, i)
+        }
+    })
+    rigth[i].addEventListener('click', (elRight) => {
+        if (indexImg >= 0 && indexImg < imgs.length - 1) {
+            indexImg++
+            changeVisibleImg(left, rigth, imgs, indexImg, i)
+        }
+    })
+})
 
 const markBuletPosition = (paramPositon) => {
     const bulets = divBultests[paramPositon].querySelectorAll('span div')
