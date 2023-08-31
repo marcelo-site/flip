@@ -6,22 +6,23 @@ const orderExists = JSON.parse(localStorage.getItem('cart'))
 const content = document.querySelector('#content')
 const totCart = document.querySelector('#total')
 const cartQty = document.querySelector('#cart-qty')
+const whats = document.querySelector('#whats')
 import { menuIsactive } from "./menu.js"
 
 // function delete product do cart
 const deleteProduct = async (param) => {
     try {
-       const res = confirm('tem certeza que deseja excluir esse item?')
-       if(res === true) {
-        orderExists.splice(param, 1)
-        const child = document.querySelectorAll('.container')[param]
-        content.removeChild(child)
-        localStorage.setItem('cart', JSON.stringify(orderExists))
-        const qty = parseInt(cartQty.innerHTML)
-        cartQty.innerHTML = qty - 1
-        const del = document.querySelectorAll('.del')
-        del.forEach((el, i) => el.onclick =() => deleteProduct(i))
-       }
+        const res = confirm('tem certeza que deseja excluir esse item?')
+        if (res === true) {
+            orderExists.splice(param, 1)
+            const child = document.querySelectorAll('.container')[param]
+            content.removeChild(child)
+            localStorage.setItem('cart', JSON.stringify(orderExists))
+            const qty = parseInt(cartQty.innerHTML)
+            cartQty.innerHTML = qty - 1
+            const del = document.querySelectorAll('.del')
+            del.forEach((el, i) => el.onclick = () => deleteProduct(i))
+        }
     } catch (error) {
         console.log(error)
     }
@@ -45,7 +46,7 @@ generetePDF.addEventListener('click', () => {
 const insertContent = async () => {
     if (orderExists.length > 0) {
         try {
-          const result =  await Promise.allSettled(orderExists.map(async (order, index) => {
+            const result = await Promise.allSettled(orderExists.map(async (order, index) => {
                 const divOrder = document.createElement('div')
                 divOrder.classList.add('container')
                 const div = document.createElement('div')
@@ -102,7 +103,7 @@ const insertContent = async () => {
             console.log(error)
         }
     }
-     else {
+    else {
         const div = document.createElement('div')
         div.style.textAlign = 'center'
         div.innerHTML = 'Não Há produtos no momento!'
@@ -110,24 +111,38 @@ const insertContent = async () => {
     }
 }
 
-window.addEventListener('load',async () => {
-  await  insertContent()
+window.addEventListener('load', async () => {
+    await insertContent()
     if (orderExists.length > 0) {
         cartQty.innerHTML = orderExists.length
     }
+
     setTimeout(() => {
         const container = Array.from(document.querySelectorAll('.container'))
         const imgDiv = document.querySelector('.container img')
-        if(imgDiv) {  
-        container.map(el => {
-            el.style.height = `${parseInt(imgDiv.clientHeight) + 150}px`
-        }) }
+        if (imgDiv) {
+            container.map(el => {
+                el.style.height = `${parseInt(imgDiv.clientHeight) + 150}px`
+            })
+        }
         const total = Array.from(document.querySelectorAll('.subtotal_order'))
             .reduce((acc, cur) => acc + parseFloat(cur.innerHTML.replace('R$&nbsp;', '').replace(',', '.')), 0)
         const span = document.createElement('span')
         span.style.color = 'red'
         span.innerHTML = total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
         totCart.prepend(span)
+        let str = '# Catálogo incrivél! \n'
+        const paramUrlOrder = orderExists.forEach(el => {
+            // console.log(el)
+            const id = el.desc
+            const res = `*produto:* ${id.split('-')[1]} \n*id:* ${id} \n*url da imagem:* ${el.img} \n*tamanho:* ${el.size} \n *preço:* ${el.price} \n*quantidade:* ${el.qty} \n\n`
+            str += res
+        })
+        // console.log(arr)
+        // const textUrl = window.encodeURIComponent(str)
+        const textUrl = window.encodeURIComponent(str)
+        const url = `https://api.whatsapp.com/send?phone=5581991869812&text=${textUrl}`
+        whats.href = url
     }, 300)
     menuIsactive()
 })
