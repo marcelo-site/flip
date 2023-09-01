@@ -119,7 +119,7 @@ const insertUrlZap = () => {
     let tot = 0
     orderExists.forEach(el => {
         const id = el.desc
-        str += `*produto:* ${id.split('-')[2]}`
+        str += `*produto:* ${id.split('-')[2]} \n`
         str += `*cor:* ${id.split('-')[1]} \n`
         str += `*id:* ${id}\n`
         str += `*url da imagem:* ${el.img} \n`
