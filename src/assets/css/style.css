@@ -431,7 +431,7 @@ footer a {
 
 @keyframes slide {
     0% {
-        transform: translateX(70vw);
+        transform: translateX(60vw);
         opacity: 0;
     }
 
@@ -444,6 +444,7 @@ footer a {
     }
 
     100% {
+        transform: translateX(0vw);
         opacity: 0;
     }
 }

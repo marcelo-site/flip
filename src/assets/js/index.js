@@ -128,7 +128,7 @@ fronts.forEach((el, i) => {
             const div = document.createElement('div')
             div.classList.add('hand')
             const img = document.createElement('img')
-            img.src = 'src/assets/img/left-click.png'
+            img.src = 'src/assets/img/left-click.webp'
             div.append(img)
 
             setTimeout(() => container[i].append(div), 500)
