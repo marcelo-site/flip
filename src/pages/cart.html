@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cart do catálogo incrível</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"
         integrity="sha512-YcsIPGdhPK4P/uRW6/sruonlYj+Q7UHWeKfTAkBW+g83NKM+jMJFJ4iAPfSnVp7BKD4dKMHmVSvICUbE/V1sSw=="
@@ -21,7 +20,7 @@
 <link rel="alternate" href="" hreflang="pt-br" />
 <meta name="robots" content="index, follow">
 
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:url" content="https://marcelo-site.github.io/flip" />
 <meta property="og:title" content="Catalogo incrível" />
 <meta property="og:image" content="https://marcelo-site.github.io/flip/src/assets/img/logo.png"/>
@@ -34,12 +33,10 @@
 <!-- <meta property="business:contact_data:email" content="EMAIL" />
 <meta property="business:contact_data:phone_number" content="TEL" /> -->
 
-
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:description" content="DESCRIÇÃO"/>
 <meta name="twitter:title" content="Catalogo de produtos" />
 <meta name="twitter:image" content="https://marcelo-site.github.io/flip/src/assets/img/logo.png" />
-
 
 <meta name="geo.placename" content="Pernambuco" />
 <meta name="geo.region" content="BR" />
@@ -50,7 +47,6 @@
 <meta property="og:locale" content="pt_BR" />
 <meta name="format-detection" content="telephone=no">
 <!-- SEO -->
-
 
 </head>
 
@@ -81,20 +77,18 @@
     <main>
         <h1>Seu carrinho</h1>
         <section id="content"></section>
+        <div class="tot"><span class="bold">Total do seu carrinho: </span><span id="total"></span></div>
         <div class="bottom fixed">
-            <span class="bold">Total: </span><span id="total"></span>
-            <!-- <span></span> -->
-            <a class="btn" id="whats" style="font-size: .8em; padding: .25em .5em; margin: 0 .5em;" target="_blank"
-                    
-           
-                    >Enviar pedido <i
+            
+            <a style="background-color: #2a9b54; color: white;" class="btn" id="whats" target="_blank" href="">Enviar pedido <i
                         class="bi bi-whatsapp"></i></a>
-            <button id="pdf" class="btn" style="font-size: .8em; padding: .25em .5em; margin: 0 .5em;"> Baixar
+            <button id="pdf" class="btn"> Baixar
                 PDF</button>
+                
         </div>
     </main>
 
-    <footer style="margin-bottom: 44px;">
+    <footer style="margin-bottom: 45px;">
         <p>&copy; 2023 | Feito por <a target="_blank" href="https://www.instagram.com/marcelosouza5224/">Macelo</a></p>
     </footer>
 </body>

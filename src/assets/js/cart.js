@@ -7,6 +7,7 @@ const content = document.querySelector('#content')
 const totCart = document.querySelector('#total')
 const cartQty = document.querySelector('#cart-qty')
 const whats = document.querySelector('#whats')
+const date = new Date().toLocaleDateString('pt-br').replace(/\//g, '-')
 import { menuIsactive } from "./menu.js"
 
 // function delete product do cart
@@ -22,6 +23,7 @@ const deleteProduct = async (param) => {
             cartQty.innerHTML = qty - 1
             const del = document.querySelectorAll('.del')
             del.forEach((el, i) => el.onclick = () => deleteProduct(i))
+            insertUrlZap()
         }
     } catch (error) {
         console.log(error)
@@ -111,6 +113,29 @@ const insertContent = async () => {
     }
 }
 
+const insertUrlZap = () => {
+    let str = '\n*Catálogo incrivél!* \n\n'
+    str += `*Resumo do pedido realizado em ${date}* \n`
+    let tot = 0
+    orderExists.forEach(el => {
+        const id = el.desc
+        str += `*produto:* ${id.split('-')[2]}`
+        str += `*cor:* ${id.split('-')[1]} \n`
+        str += `*id:* ${id}\n`
+        str += `*url da imagem:* ${el.img} \n`
+        str += `*tamanho:* ${el.size} \n`
+        str += `*preço:* ${parseFloat(el.price).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} \n`
+        str += `*quantidade:* ${el.qty} \n`
+        const subtotal = parseInt(el.qty) * parseFloat(el.price)
+        tot += subtotal
+        str += `*subtotal:* ${parseFloat(subtotal.toFixed(2)).toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} \n\n`
+    })
+    const textUrl = window.encodeURIComponent(str + `*Total*: ${tot.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})} \n`)
+    const url = `https://api.whatsapp.com/send?phone=5581991869812&text=${textUrl}`
+    whats.href = url
+}
+insertUrlZap()
+
 window.addEventListener('load', async () => {
     await insertContent()
     if (orderExists.length > 0) {
@@ -122,7 +147,7 @@ window.addEventListener('load', async () => {
         const imgDiv = document.querySelector('.container img')
         if (imgDiv) {
             container.map(el => {
-                el.style.height = `${parseInt(imgDiv.clientHeight) + 150}px`
+                el.style.height = `${parseInt(imgDiv.clientHeight) + 140}px`
             })
         }
         const total = Array.from(document.querySelectorAll('.subtotal_order'))
@@ -131,18 +156,6 @@ window.addEventListener('load', async () => {
         span.style.color = 'red'
         span.innerHTML = total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })
         totCart.prepend(span)
-        let str = '# Catálogo incrivél! \n'
-        const paramUrlOrder = orderExists.forEach(el => {
-            // console.log(el)
-            const id = el.desc
-            const res = `*produto:* ${id.split('-')[1]} \n*id:* ${id} \n*url da imagem:* ${el.img} \n*tamanho:* ${el.size} \n *preço:* ${el.price} \n*quantidade:* ${el.qty} \n\n`
-            str += res
-        })
-        // console.log(arr)
-        // const textUrl = window.encodeURIComponent(str)
-        const textUrl = window.encodeURIComponent(str)
-        const url = `whatsapp://send?phone=5581991869812&text=${textUrl}`
-        whats.href = url
     }, 300)
     menuIsactive()
 })
