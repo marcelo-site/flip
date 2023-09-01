@@ -115,7 +115,7 @@ const insertContent = async () => {
 
 const insertUrlZap = () => {
     let str = '\n*Catálogo incrivél!* \n\n'
-    str += `*Resumo do pedido realizado em ${date}* \n`
+    str += `*Resumo do pedido realizado em ${date}* \n\n`
     let tot = 0
     orderExists.forEach(el => {
         const id = el.desc
